@@ -1,0 +1,47 @@
+@import '../../utils/variables';
+
+.header {
+  border-bottom: 1px solid $gray-line;
+  padding: 40px 0;
+  border-radius: $borderRadius;
+  background-color: $sectionBGColor;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__logo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    img {
+      object-fit: contain;
+    }
+
+    h1 {
+      color: #181818;
+      font-size: 24px;
+      letter-spacing: 1%;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    p {
+      color: #7b7b7b;
+    }
+  }
+
+  &__cart {
+      
+    @media screen and (max-width: 820px) {
+      position: fixed;
+      bottom: 35px;
+      right: 35px;
+      z-index: 1;
+    }
+  }
+}

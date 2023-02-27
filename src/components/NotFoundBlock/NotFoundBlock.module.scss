@@ -1,0 +1,17 @@
+.root {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+
+  h2 {
+    font-size: 24px;
+  }
+
+  img {
+    height: 42vh;
+    object-fit: contain;
+  }
+}
