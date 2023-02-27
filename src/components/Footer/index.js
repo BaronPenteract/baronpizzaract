@@ -9,10 +9,10 @@ export default function Footer() {
       <div className="container">
         <Link to="/">
           <div className="footer__logo">
-            <img width="38" src={logo} alt="BaronPizzaract logo" />
+            <img src={logo} alt="BaronPizzaract logo" />
             <div>
-              <h1>BaronPizzaract</h1>
-              <p>самая вкусная пицца во всех вселенных и измерениях</p>
+              <h2>BaronPizzaract</h2>
+              <p>наивкуснейшая Pizza</p>
             </div>
           </div>
         </Link>

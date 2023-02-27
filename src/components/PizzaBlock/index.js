@@ -2,7 +2,7 @@ import React from 'react';
 
 import './PizzaBlock.scss';
 
-export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
+export default function PizzaBlock({ title, price, imageUrl, sizes, types, rating }) {
   const typeNames = ['Тонкое', 'Традиционное'];
 
   const [activeSize, setActiveSize] = React.useState(0);
@@ -30,6 +30,7 @@ export default function PizzaBlock({ title, price, imageUrl, sizes, types }) {
 
   return (
     <div className="pizza-block">
+      <span className="pizza-block__rating">{rating}</span>
       <img className="pizza-block__image" src={imageUrl} alt={`Pizza ${title}`} />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">

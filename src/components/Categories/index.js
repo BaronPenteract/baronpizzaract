@@ -2,19 +2,14 @@ import React from 'react';
 
 import './Categories.scss';
 
-export default function Categories() {
-  const [categoryIndex, setCategoryIndex] = React.useState(0);
+export default function Categories({ categoryId, onClickCategory }) {
+  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
-  const categories = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
-  const handleClick = (index) => {
-    setCategoryIndex(index);
-  };
   const categoriesElements = categories.map((category, index) => (
     <li
       key={index}
-      onClick={() => handleClick(index)}
-      className={categoryIndex === index ? 'active' : ''}
+      onClick={() => onClickCategory(index)}
+      className={categoryId === index ? 'active' : ''}
     >
       {category}
     </li>

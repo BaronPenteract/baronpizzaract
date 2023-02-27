@@ -4,4 +4,12 @@
   padding: 40px 0;
   border-radius: $borderRadius;
   background-color: $sectionBGColor;
+
+  &__logo {
+    width: 32px;
+
+    img {
+      width: 100%;
+    }
+  }
 }
