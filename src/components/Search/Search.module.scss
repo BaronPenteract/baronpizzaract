@@ -1,0 +1,44 @@
+@import '../../utils/variables';
+
+.root {
+  max-width: 200px;
+  text-align: right;
+  position: relative;
+  z-index: 0;
+}
+
+.del {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  z-index: 1;
+  width: 30px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  left: 6px;
+  z-index: -1;
+  width: 30px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.input {
+  width: 0px;
+  height: 42px;
+  box-sizing: border-box;
+  padding: 10px 20px 10px 36px;
+  border-radius: 21px;
+  border-color: transparent;
+  background-color: transparent;
+
+  transition: all .2s linear;
+
+  &:focus {
+    width: 200px;
+  }
+}

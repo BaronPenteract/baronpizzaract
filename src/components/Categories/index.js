@@ -2,9 +2,7 @@ import React from 'react';
 
 import './Categories.scss';
 
-export default function Categories({ categoryId, onClickCategory }) {
-  const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
-
+export default function Categories({ categoryId, onClickCategory, categories }) {
   const categoriesElements = categories.map((category, index) => (
     <li
       key={index}
