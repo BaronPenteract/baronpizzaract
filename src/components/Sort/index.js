@@ -13,8 +13,22 @@ export const listValues = [
 export default function Sort(/* { sortOrder, handleSortOrder } */) {
   const [isOpen, setIsOpen] = React.useState(false);
 
+  const sortRef = React.useRef();
+
   const { sortType, order } = useSelector((state) => state.filter);
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const handleClickOutsideSort = (e) => {
+      if (!e.path.includes(sortRef.current)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutsideSort);
+
+    return () => document.body.removeEventListener('click', handleClickOutsideSort);
+  }, []);
 
   const listElements = listValues.map((obj, index) => (
     <li
@@ -32,7 +46,7 @@ export default function Sort(/* { sortOrder, handleSortOrder } */) {
   };
 
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <div onClick={() => dispatch(setOrderType(!order))}>
           <svg
