@@ -5,6 +5,7 @@ import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
 import { setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { fetchPizzas } from '../redux/slices/pizzasSlice';
 
 import Categories from '../components/Categories';
 import Sort, { listValues } from '../components/Sort';
@@ -21,32 +22,16 @@ export default function Pizzas() {
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const [pizzas, setPizzas] = React.useState([]);
-  const [isLoading, setIsLoading] = React.useState(true);
   const [searchValue, setSearchValue] = React.useState('');
 
   const { categoryId, sortType, orderType, currentPage } = useSelector((state) => state.filter);
 
-  const fetchPizzas = () => {
-    setIsLoading(true);
-    axios
-      .get(
-        `https://63f9ed3d473885d837d4f7e1.mockapi.io/items?page=${currentPage}&limit=4&${
-          categoryId ? `category=${categoryId}&` : ''
-        }sortBy=${sortType.sortCategory}${
-          searchValue ? `&filter=${searchValue}&` : ''
-        }&order=${orderType}`,
-      )
-      .then((res) => {
-        setPizzas(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  const { pizzas, status } = useSelector((state) => state.pizzas);
+
+  const getPizzas = async () => {
+    dispatch(fetchPizzas({ categoryId, sortType, orderType, currentPage, searchValue }));
   };
+
   // Проверяем, есть ли параметры в ссылке, если да, то вытаскиваем
   React.useEffect(() => {
     if (window.location.search) {
@@ -62,7 +47,7 @@ export default function Pizzas() {
     window.scrollTo(0, 0);
 
     if (!isSearch.current) {
-      fetchPizzas();
+      getPizzas();
     }
 
     isSearch.current = false;
@@ -107,8 +92,20 @@ export default function Pizzas() {
           <Search />
         </SearchContext.Provider>
       </div>
-      <div className="content__items">{isLoading ? sceletonPizzasElements : pizzasElements}</div>
-      <Pagination forcePage={currentPage} pageCount={3} onChangePage={selectPage} />
+      <div className="content__items">
+        {status === 'error' ? (
+          <div className="content__items_error">
+            <h2>К сожалению, не удалось загрузить пиццы(</h2>
+          </div>
+        ) : status === 'success' ? (
+          pizzasElements
+        ) : (
+          sceletonPizzasElements
+        )}
+      </div>
+      {status === 'success' && (
+        <Pagination forcePage={currentPage} pageCount={3} onChangePage={selectPage} />
+      )}
     </>
   );
 }

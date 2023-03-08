@@ -1,7 +1,7 @@
 @import '../../utils/variables';
 
 .root {
-  padding-top: 20px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,10 +12,17 @@
 
   h2 {
     font-size: 24px;
+    text-align: center;
   }
 
   img {
     height: 42vh;
     object-fit: contain;
+  }
+
+  @media screen and (max-width: 442px) {
+    h2 {
+      font-size: 16px;
+    }
   }
 }

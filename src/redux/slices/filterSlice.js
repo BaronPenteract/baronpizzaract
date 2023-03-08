@@ -33,7 +33,7 @@ export const filterSlice = createSlice({
       state.sortType = action.payload.sort;
       state.currentPage = Number(action.payload.currentPage);
       state.orderType = action.payload.orderType;
-      state.order = action.payload.orderType == 'desc' ? true : false;
+      state.order = action.payload.orderType === 'desc' ? true : false;
     },
   },
 });

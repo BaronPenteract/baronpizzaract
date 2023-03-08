@@ -47,6 +47,12 @@ body {
     row-gap: 20px;
     column-gap: 20px;
     justify-content: center;
+
+    &_error {
+      padding: 20px;
+      background-color: $sectionBGColor;
+      border-radius: $borderRadius;
+    }
   }
 
   &__top {
