@@ -7,8 +7,6 @@ import Header from '../Header';
 import Footer from '../Footer';
 
 function App() {
-  window.scrollTo(0, 0);
-
   return (
     <div className="wrapper">
       <div className="content">

@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+
 import './index.scss';
 
 import App from './components/App';
@@ -11,7 +14,7 @@ import NotFound from './pages/NotFound';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
@@ -21,5 +24,5 @@ root.render(
         </Route>
       </Routes>
     </BrowserRouter>
-  </React.StrictMode>,
+  </Provider>,
 );

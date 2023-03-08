@@ -1,15 +1,20 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { setSortType, setOrderType } from '../../redux/slices/filterSlice';
 import './Sort.scss';
 
-export default function Sort({ sortType, onClickSortItem, sortOrder, handleSortOrder }) {
+export const listValues = [
+  { name: 'популярности', sortCategory: 'rating' },
+  { name: 'цене', sortCategory: 'price' },
+  { name: 'алфавиту', sortCategory: 'title' },
+];
+
+export default function Sort(/* { sortOrder, handleSortOrder } */) {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const listValues = [
-    { name: 'популярности', sortCategory: 'rating' },
-    { name: 'цене', sortCategory: 'price' },
-    { name: 'алфавиту', sortCategory: 'title' },
-  ];
+  const { sortType, order } = useSelector((state) => state.filter);
+  const dispatch = useDispatch();
 
   const listElements = listValues.map((obj, index) => (
     <li
@@ -22,16 +27,16 @@ export default function Sort({ sortType, onClickSortItem, sortOrder, handleSortO
   ));
 
   const handleListElementClick = (item) => {
-    onClickSortItem(item);
+    dispatch(setSortType(item));
     setIsOpen(false);
   };
 
   return (
     <div className="sort">
       <div className="sort__label">
-        <div onClick={handleSortOrder}>
+        <div onClick={() => dispatch(setOrderType(!order))}>
           <svg
-            style={sortOrder ? { transform: 'rotate(180deg)' } : {}}
+            style={order ? { transform: 'rotate(180deg)' } : {}}
             width="10"
             height="6"
             viewBox="0 0 10 6"
