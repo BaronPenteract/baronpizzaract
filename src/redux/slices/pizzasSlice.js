@@ -3,8 +3,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const fetchPizzas = createAsyncThunk(
   'pizzas/fetchPizzas',
-  async ({ categoryId, sortType, searchValue, currentPage, orderType }) => {
-    const res = await axios.get(
+  async ({ categoryId, sortType, searchValue, currentPage, orderType }, ApiThunk) => {
+    const { data } = await axios.get(
       `https://63f9ed3d473885d837d4f7e1.mockapi.io/items?page=${currentPage}&limit=4&${
         categoryId ? `category=${categoryId}&` : ''
       }sortBy=${sortType.sortCategory}${
@@ -12,7 +12,11 @@ export const fetchPizzas = createAsyncThunk(
       }&order=${orderType}`,
     );
 
-    return res.data;
+    if (data.length > 0) {
+      return data;
+    } else {
+      ApiThunk.rejected('Нет таких пицц');
+    }
   },
 );
 
@@ -44,6 +48,8 @@ export const pizzaSlice = createSlice({
     },
   },
 });
+
+export const getPizzasSelector = (state) => state.pizzas;
 
 export const { setPizzas } = pizzaSlice.actions;
 

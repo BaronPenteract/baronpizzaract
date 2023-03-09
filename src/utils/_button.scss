@@ -33,6 +33,16 @@
     transform: translateY(1px);
   }
 
+  &_disabled {
+    opacity: .5;
+    background-color: darken(#fff, 80%);
+
+    &:hover { 
+      background-color: darken(#fff, 80%);
+      cursor: default;
+    }
+  }
+
   &--circle {
     display: flex;
     align-items: center;

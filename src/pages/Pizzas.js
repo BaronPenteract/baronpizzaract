@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
-import { setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzasSlice';
+import { getFilterSelector, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { fetchPizzas, getPizzasSelector } from '../redux/slices/pizzasSlice';
 
 import Categories from '../components/Categories';
 import Sort, { listValues } from '../components/Sort';
@@ -14,19 +13,16 @@ import SceletonPizzaBlock from '../components/PizzaBlock/Sceleton';
 import Search from '../components/Search';
 import Pagination from '../components/Pagination';
 
-export const SearchContext = React.createContext();
-
 export default function Pizzas() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
 
-  const [searchValue, setSearchValue] = React.useState('');
+  const { categoryId, sortType, orderType, currentPage, searchValue } =
+    useSelector(getFilterSelector);
 
-  const { categoryId, sortType, orderType, currentPage } = useSelector((state) => state.filter);
-
-  const { pizzas, status } = useSelector((state) => state.pizzas);
+  const { pizzas, status } = useSelector(getPizzasSelector);
 
   const getPizzas = async () => {
     dispatch(fetchPizzas({ categoryId, sortType, orderType, currentPage, searchValue }));
@@ -88,9 +84,7 @@ export default function Pizzas() {
       </div>
       <div className="content__title">
         <h2>Пиццы</h2>
-        <SearchContext.Provider value={{ searchValue, setSearchValue }}>
-          <Search />
-        </SearchContext.Provider>
+        <Search />
       </div>
       <div className="content__items">
         {status === 'error' ? (

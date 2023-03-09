@@ -1,0 +1,129 @@
+@import '../../utils/variables';
+
+  .cart__item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+    width: 100%;
+    border-radius: $borderRadius;
+    background-color: $sectionBGColor;
+    padding: 16px;
+
+    &_section{
+      flex-grow: 1;
+      display: flex;
+      gap: 10px;
+
+      &:nth-child(1) {
+        @media screen and (max-width: 442px) {
+          flex-direction: column;
+        }
+        
+      }
+
+      &:nth-child(2) {
+        justify-content: right;
+        
+      }
+    }
+
+    &-img {
+      width: 80px;
+      display: flex;
+      align-items: center;
+
+      img {
+        width:100%;
+        object-fit: contain;
+        object-position: center;
+      }
+        
+      @media screen and (max-width: 442px) {
+        width: 100%;
+      }
+    }
+
+    &-info {
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h3 {
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 27px;
+        letter-spacing: 0.01em;
+      }
+
+      p {
+        font-size: 18px;
+        color: #8d8d8d;
+      }
+    }
+
+    &-count {
+      min-width: 116px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      &-minus {
+        svg {
+          path:first-of-type {
+            display: none;
+          }
+        }
+      }
+
+      b {
+        font-size: 22px;
+      }
+    }
+
+    &-price {
+      min-width: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      b {
+        font-weight: bold;
+        font-size: 22px;
+        letter-spacing: 0.01em;
+      }
+    }
+
+    &-remove {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .button {
+        border-color: darken($color: $gray-line, $amount: 10);
+      }
+
+      svg {
+        transform: rotate(45deg);
+
+        path {
+          fill: darken($color: $gray-line, $amount: 15);
+        }
+      }
+
+      .button {
+        svg {
+          width: 11.5px;
+          height: 11.5px;
+          position: relative;
+        }
+        &:hover,
+        &:active {
+          border-color: darken($color: $gray-line, $amount: 80);
+          background-color: darken($color: $gray-line, $amount: 80);
+        }
+      }
+    }
+  }

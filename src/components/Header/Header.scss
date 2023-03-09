@@ -15,12 +15,15 @@
   }
 
   &__logo {
+    width: 38px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
 
     img {
+      width: 100%;
       object-fit: contain;
+      object-position: center;
     }
 
     h1 {

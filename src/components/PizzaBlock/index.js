@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addItem } from '../../redux/slices/cartSlice';
+import { addItem, getCartSelector } from '../../redux/slices/cartSlice';
 
 import './PizzaBlock.scss';
 
@@ -26,7 +26,7 @@ export default function PizzaBlock({ id, title, price, imageUrl, sizes, types, r
     dispatch(addItem(item));
   };
 
-  const items = useSelector((state) => state.cart.items);
+  const { items } = useSelector(getCartSelector);
   const cartItem = items.find((item) => item.id === id);
 
   const sizeButtonsElements = sizes.map((size, index) => (

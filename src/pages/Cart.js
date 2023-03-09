@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { removeItems } from '../redux/slices/cartSlice';
+import { getCartSelector, removeItems } from '../redux/slices/cartSlice';
 import CartItem from '../components/CartItem';
 
 import './Cart.scss';
@@ -16,8 +16,7 @@ export default function Cart() {
     }
   };
 
-  const items = useSelector((state) => state.cart.items);
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const { items, totalPrice } = useSelector(getCartSelector);
   const totalCount = items.reduce((acc, item) => acc + item.count, 0);
 
   const itemsElements = items.map((item) => <CartItem key={item.id} {...item} />);
@@ -61,7 +60,12 @@ export default function Cart() {
           </svg>
           Корзина
         </h2>
-        <div onClick={handleClearCart} className="cart__clear">
+        <button
+          type="button"
+          title="Очистить корзину"
+          onClick={handleClearCart}
+          className="cart__clear"
+        >
           <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M2.5 5H4.16667H17.5"
@@ -94,17 +98,15 @@ export default function Cart() {
           </svg>
 
           {/* <span>Очистить корзину</span> */}
-        </div>
+        </button>
       </div>
       <div className="content__items">{itemsElements}</div>
       <div className="cart__bottom">
         <div className="cart__bottom-details">
           <span>
-            {' '}
             Всего пицц: <b>{totalCount} шт.</b>{' '}
           </span>
           <span>
-            {' '}
             Сумма заказа: <b>{totalPrice} ₽</b>{' '}
           </span>
         </div>
@@ -128,9 +130,9 @@ export default function Cart() {
 
             <span>Вернуться назад</span>
           </Link>
-          <div className="button pay-btn">
+          <button type="button" title="Оплатить" className="button pay-btn">
             <span>Оплатить сейчас</span>
-          </div>
+          </button>
         </div>
       </div>
     </div>

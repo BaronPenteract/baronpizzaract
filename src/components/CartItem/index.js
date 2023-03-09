@@ -1,7 +1,9 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
+
+import './CartItem.scss';
 
 export default function CartItem({ id, title, imageUrl, price, type, size, count }) {
   const dispatch = useDispatch();
@@ -35,9 +37,13 @@ export default function CartItem({ id, title, imageUrl, price, type, size, count
       </div>
       <div className="cart__item_section">
         <div className="cart__item-count">
-          <div
-            onClick={handleMinusItem}
-            className="button button--outline button--circle cart__item-count-minus"
+          <button
+            type="button"
+            title="Убрать одну единицу"
+            onClick={count > 1 && handleMinusItem}
+            className={`button button--outline button--circle cart__item-count-minus ${
+              count < 2 && 'button_disabled'
+            }`}
           >
             <svg
               width="10"
@@ -55,9 +61,11 @@ export default function CartItem({ id, title, imageUrl, price, type, size, count
                 fill="#EB5A1E"
               />
             </svg>
-          </div>
+          </button>
           <b>{count}</b>
-          <div
+          <button
+            type="button"
+            title="Добаить одну единицу"
             onClick={handleAddItem}
             className="button button--outline button--circle cart__item-count-plus"
           >
@@ -77,13 +85,18 @@ export default function CartItem({ id, title, imageUrl, price, type, size, count
                 fill="#EB5A1E"
               />
             </svg>
-          </div>
+          </button>
         </div>
         <div className="cart__item-price">
           <b>{price * count} ₽</b>
         </div>
         <div className="cart__item-remove">
-          <div onClick={handleRemoveItem} className="button button--outline button--circle">
+          <button
+            type="button"
+            title="Удалить пиццу"
+            onClick={handleRemoveItem}
+            className="button button--outline button--circle"
+          >
             <svg
               width="10"
               height="10"
@@ -100,7 +113,7 @@ export default function CartItem({ id, title, imageUrl, price, type, size, count
                 fill="#EB5A1E"
               />
             </svg>
-          </div>
+          </button>
         </div>
       </div>
     </div>

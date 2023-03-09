@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 import './Header.scss';
 import logo from '../../images/logo.png';
+import { getCartSelector } from '../../redux/slices/cartSlice';
 
 export default function Header() {
-  const { totalPrice, items } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector(getCartSelector);
   const totalCount = items.reduce((acc, item) => (acc += item.count), 0);
 
   return (
@@ -13,7 +14,7 @@ export default function Header() {
       <div className="container">
         <Link to="/">
           <div className="header__logo">
-            <img width="38" src={logo} alt="BaronPizzaract logo" />
+            <img src={logo} alt="BaronPizzaract logo" />
             <div>
               <h1>BaronPizzaract</h1>
               <p>самая вкусная пицца во всех вселенных и измерениях</p>
