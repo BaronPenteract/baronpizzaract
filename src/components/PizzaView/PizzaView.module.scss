@@ -1,0 +1,21 @@
+@import '../../utils/variables';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 20px;
+  background-color: $sectionBGColor;
+  border-radius: $borderRadius;
+}
+
+.img {
+  max-width: 442px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.button-container {
+  width: 100%;
+}

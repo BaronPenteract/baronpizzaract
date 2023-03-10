@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { addItem, getCartSelector } from '../../redux/slices/cartSlice';
 
@@ -52,7 +53,9 @@ export default function PizzaBlock({ id, title, price, imageUrl, sizes, types, r
   return (
     <div className="pizza-block">
       <span className="pizza-block__rating">{rating}</span>
-      <img className="pizza-block__image" src={imageUrl} alt={`Pizza ${title}`} />
+      <Link to={`pizza/${id}`}>
+        <img className="pizza-block__image" src={imageUrl} alt={`Pizza ${title}`} />
+      </Link>
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>{typeButtonsElements}</ul>

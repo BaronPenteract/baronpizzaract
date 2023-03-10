@@ -50,6 +50,8 @@ export const pizzaSlice = createSlice({
 });
 
 export const getPizzasSelector = (state) => state.pizzas;
+export const getPizzaByIdSelector = (id) => (state) =>
+  state.pizzas.pizzas.find((pizza) => pizza.id === id);
 
 export const { setPizzas } = pizzaSlice.actions;
 

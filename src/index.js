@@ -11,6 +11,7 @@ import App from './components/App';
 import Cart from './pages/Cart';
 import Pizzas from './pages/Pizzas';
 import NotFound from './pages/NotFound';
+import PizzaView from './components/PizzaView';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Pizzas />} />
+          <Route path="pizza/:id" element={<PizzaView />} />
           <Route path="cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Route>
