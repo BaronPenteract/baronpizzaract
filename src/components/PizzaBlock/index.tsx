@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { addItem, getCartSelector } from '../../redux/slices/cartSlice';
+import { addItem, CartItemType, getCartSelector } from '../../redux/slices/cartSlice';
 
 import './PizzaBlock.scss';
 
@@ -33,13 +33,14 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   const dispatch = useDispatch();
 
   const handleAddClick: React.MouseEventHandler<HTMLButtonElement> = () => {
-    const item = {
+    const item: CartItemType = {
       id,
       title,
       price,
       imageUrl,
       type: typeNames[activeType],
       size: sizes[activeSize],
+      count: 1,
     };
 
     dispatch(addItem(item));

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
+import { addItem, CartItemType, minusItem, removeItem } from '../../redux/slices/cartSlice';
 
 import './CartItem.scss';
 
-type CartItemProps = {
+/* type CartItemProps = {
   id: string;
   title: string;
   imageUrl: string;
@@ -13,13 +13,14 @@ type CartItemProps = {
   type: string;
   size: number;
   count: number;
-};
+}; */
 
-const CartItem: React.FC<CartItemProps> = ({ id, title, imageUrl, price, type, size, count }) => {
+const CartItem: React.FC<CartItemType> = (props) => {
+  const { id, title, imageUrl, price, type, size, count } = props;
   const dispatch = useDispatch();
 
   const handleAddItem: React.MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(addItem({ id }));
+    dispatch(addItem(props));
   };
 
   const handleMinusItem: React.MouseEventHandler<HTMLButtonElement> = () => {

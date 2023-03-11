@@ -1,12 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setSortType, setOrderType, getFilterSelector } from '../../redux/slices/filterSlice';
+import {
+  setSortType,
+  setOrderType,
+  getFilterSelector,
+  SortType,
+} from '../../redux/slices/filterSlice';
 import './Sort.scss';
 
-type ListValue = { name: string; sortCategory: string };
-
-export const listValues: ListValue[] = [
+export const SortValues: SortType[] = [
   { name: 'популярности', sortCategory: 'rating' },
   { name: 'цене', sortCategory: 'price' },
   { name: 'алфавиту', sortCategory: 'title' },
@@ -36,7 +39,7 @@ const Sort = () => {
     return () => document.body.removeEventListener('click', handleClickOutsideSort);
   }, []);
 
-  const listElements = listValues.map((obj, index) => (
+  const listElements = SortValues.map((obj, index) => (
     <li
       onClick={() => handleListElementClick(obj)}
       key={index}

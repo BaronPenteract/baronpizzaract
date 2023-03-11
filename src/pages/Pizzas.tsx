@@ -1,20 +1,28 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
 import { getFilterSelector, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { fetchPizzas, getPizzasSelector } from '../redux/slices/pizzasSlice';
+import {
+  FetchPizza,
+  fetchPizzas,
+  getPizzasSelector,
+  PizzaType,
+  SearchParamsType,
+  Status,
+} from '../redux/slices/pizzasSlice';
 
 import Categories from '../components/Categories';
-import Sort, { listValues } from '../components/Sort';
+import Sort, { SortValues } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import SceletonPizzaBlock from '../components/PizzaBlock/Sceleton';
 import Search from '../components/Search';
 import Pagination from '../components/Pagination';
+import { useAppDispatch } from '../redux/store';
 
 const Pizzas: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -26,18 +34,32 @@ const Pizzas: React.FC = () => {
 
   const getPizzas = async () => {
     dispatch(
-      //@ts-ignore
-      fetchPizzas({ categoryId, sortType, orderType, currentPage, searchValue }),
+      fetchPizzas({
+        categoryId,
+        sortCategory: sortType.sortCategory,
+        orderType,
+        currentPage,
+        searchValue,
+      }),
     );
   };
 
   // Проверяем, есть ли параметры в ссылке, если да, то вытаскиваем
   React.useEffect(() => {
+    console.log(window.location.search);
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
-      const sort = listValues.find((obj) => obj.sortCategory === params.sort);
+      const params = qs.parse(window.location.search.substring(1)) as unknown as SearchParamsType;
+      const sortType = SortValues.find((obj) => obj.sortCategory === params.sort) || SortValues[0];
 
-      dispatch(setFilters({ ...params, sort }));
+      dispatch(
+        setFilters({
+          searchValue: params.searchValue,
+          categoryId: Number(params.categoryId),
+          sortType: sortType,
+          orderType: params.orderType,
+          currentPage: Number(params.currentPage),
+        }),
+      );
       isSearch.current = true;
     }
   }, []);
@@ -71,8 +93,8 @@ const Pizzas: React.FC = () => {
   const selectPage = (page: number) => {
     dispatch(setCurrentPage(page));
   };
-
-  const pizzasElements = pizzas.map((pizzaData: any) => (
+  console.log(pizzas);
+  const pizzasElements = pizzas.map((pizzaData: PizzaType) => (
     <PizzaBlock key={pizzaData.id} {...pizzaData} />
   ));
   const sceletonPizzasElements = [...new Array(6)].map((_, index) => (
@@ -90,11 +112,11 @@ const Pizzas: React.FC = () => {
         <Search />
       </div>
       <div className="content__items">
-        {status === 'error' ? (
+        {status === Status.ERROR ? (
           <div className="content__items_error">
             <h2>К сожалению, не удалось загрузить пиццы(</h2>
           </div>
-        ) : status === 'success' ? (
+        ) : status === Status.SUCCESS ? (
           pizzasElements
         ) : (
           sceletonPizzasElements
