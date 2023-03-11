@@ -18,15 +18,15 @@ type CartItemProps = {
 const CartItem: React.FC<CartItemProps> = ({ id, title, imageUrl, price, type, size, count }) => {
   const dispatch = useDispatch();
 
-  const handleAddItem: any = () => {
+  const handleAddItem: React.MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(addItem({ id }));
   };
 
-  const handleMinusItem: any = () => {
+  const handleMinusItem: React.MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(minusItem(id));
   };
 
-  const handleRemoveItem: any = () => {
+  const handleRemoveItem: React.MouseEventHandler<HTMLButtonElement> = () => {
     if (window.confirm(`Хотите удалить пиццу ${title} из корзины?`)) {
       dispatch(removeItem(id));
     }

@@ -21,8 +21,12 @@ const Sort = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const handleClickOutsideSort = (e: any) => {
-      if (!e.path.includes(sortRef.current)) {
+    const handleClickOutsideSort = (e: MouseEvent) => {
+      const _e = e as MouseEvent & {
+        path: Node[];
+      };
+
+      if (sortRef.current && !_e.path.includes(sortRef.current)) {
         setIsOpen(false);
       }
     };

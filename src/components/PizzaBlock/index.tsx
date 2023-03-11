@@ -32,7 +32,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
 
   const dispatch = useDispatch();
 
-  const handleAddClick = () => {
+  const handleAddClick: React.MouseEventHandler<HTMLButtonElement> = () => {
     const item = {
       id,
       title,
@@ -81,7 +81,11 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">от {price} ₽</div>
-        <div onClick={handleAddClick} className="button button--outline button--add">
+        <button
+          type="button"
+          onClick={handleAddClick}
+          className="button button--outline button--add"
+        >
           <svg
             width="12"
             height="12"
@@ -96,7 +100,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
           </svg>
           <span>Добавить</span>
           {cartItem && <i>{cartItem.count}</i>}
-        </div>
+        </button>
       </div>
     </div>
   );
