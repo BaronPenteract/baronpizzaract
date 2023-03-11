@@ -7,7 +7,7 @@ import CartItem from '../components/CartItem';
 import './Cart.scss';
 import EmptyCart from '../components/EmptyCart';
 
-export default function Cart() {
+const Cart: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleClearCart = () => {
@@ -17,9 +17,9 @@ export default function Cart() {
   };
 
   const { items, totalPrice } = useSelector(getCartSelector);
-  const totalCount = items.reduce((acc, item) => acc + item.count, 0);
+  const totalCount = items.reduce((acc: number, item: any) => acc + item.count, 0);
 
-  const itemsElements = items.map((item) => <CartItem key={item.id} {...item} />);
+  const itemsElements = items.map((item: any) => <CartItem key={item.id} {...item} />);
 
   if (!totalPrice) {
     return <EmptyCart />;
@@ -137,4 +137,6 @@ export default function Cart() {
       </div>
     </div>
   );
-}
+};
+
+export default Cart;

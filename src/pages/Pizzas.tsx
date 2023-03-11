@@ -13,7 +13,7 @@ import SceletonPizzaBlock from '../components/PizzaBlock/Sceleton';
 import Search from '../components/Search';
 import Pagination from '../components/Pagination';
 
-export default function Pizzas() {
+const Pizzas: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
@@ -25,7 +25,10 @@ export default function Pizzas() {
   const { pizzas, status } = useSelector(getPizzasSelector);
 
   const getPizzas = async () => {
-    dispatch(fetchPizzas({ categoryId, sortType, orderType, currentPage, searchValue }));
+    dispatch(
+      //@ts-ignore
+      fetchPizzas({ categoryId, sortType, orderType, currentPage, searchValue }),
+    );
   };
 
   // Проверяем, есть ли параметры в ссылке, если да, то вытаскиваем
@@ -65,11 +68,11 @@ export default function Pizzas() {
     isMounted.current = true;
   }, [categoryId, sortType, orderType, searchValue, currentPage]);
 
-  const selectPage = (number) => {
-    dispatch(setCurrentPage(number));
+  const selectPage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
-  const pizzasElements = pizzas.map((pizzaData) => (
+  const pizzasElements = pizzas.map((pizzaData: any) => (
     <PizzaBlock key={pizzaData.id} {...pizzaData} />
   ));
   const sceletonPizzasElements = [...new Array(6)].map((_, index) => (
@@ -79,7 +82,7 @@ export default function Pizzas() {
   return (
     <>
       <div className="content__top">
-        <Categories categoryId={categoryId} />
+        <Categories />
         <Sort />
       </div>
       <div className="content__title">
@@ -102,4 +105,6 @@ export default function Pizzas() {
       )}
     </>
   );
-}
+};
+
+export default Pizzas;

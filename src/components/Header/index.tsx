@@ -5,11 +5,11 @@ import './Header.scss';
 import logo from '../../images/logo.png';
 import { getCartSelector } from '../../redux/slices/cartSlice';
 
-export default function Header() {
+const Header: React.FC = () => {
   const { pathname } = useLocation();
 
   const { totalPrice, items } = useSelector(getCartSelector);
-  const totalCount = items.reduce((acc, item) => (acc += item.count), 0);
+  const totalCount = items.reduce((acc: number, item: any) => (acc += item.count), 0);
 
   return (
     <div className="header">
@@ -65,3 +65,5 @@ export default function Header() {
     </div>
   );
 }
+
+export default Header;

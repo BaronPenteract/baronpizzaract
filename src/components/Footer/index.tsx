@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Footer.scss';
 import logo from '../../images/logo.png';
 
-export default function Footer() {
+const Footer: React.FC = () => {
   return (
     <div className="footer">
       <div className="container">
@@ -19,4 +19,5 @@ export default function Footer() {
       </div>
     </div>
   );
-}
+};
+export default Footer;

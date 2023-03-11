@@ -5,18 +5,28 @@ import { addItem, minusItem, removeItem } from '../../redux/slices/cartSlice';
 
 import './CartItem.scss';
 
-export default function CartItem({ id, title, imageUrl, price, type, size, count }) {
+type CartItemProps = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  price: number;
+  type: string;
+  size: number;
+  count: number;
+};
+
+const CartItem: React.FC<CartItemProps> = ({ id, title, imageUrl, price, type, size, count }) => {
   const dispatch = useDispatch();
 
-  const handleAddItem = () => {
+  const handleAddItem: any = () => {
     dispatch(addItem({ id }));
   };
 
-  const handleMinusItem = () => {
+  const handleMinusItem: any = () => {
     dispatch(minusItem(id));
   };
 
-  const handleRemoveItem = () => {
+  const handleRemoveItem: any = () => {
     if (window.confirm(`Хотите удалить пиццу ${title} из корзины?`)) {
       dispatch(removeItem(id));
     }
@@ -40,7 +50,7 @@ export default function CartItem({ id, title, imageUrl, price, type, size, count
           <button
             type="button"
             title="Убрать одну единицу"
-            onClick={count > 1 && handleMinusItem}
+            onClick={count > 1 ? handleMinusItem : undefined}
             className={`button button--outline button--circle cart__item-count-minus ${
               count < 2 && 'button_disabled'
             }`}
@@ -118,4 +128,6 @@ export default function CartItem({ id, title, imageUrl, price, type, size, count
       </div>
     </div>
   );
-}
+};
+
+export default CartItem;

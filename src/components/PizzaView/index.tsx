@@ -7,10 +7,20 @@ import PizzaViewSceleton from './PizzaViewSceleton';
 
 import styles from './PizzaView.module.scss';
 
-function PizzaView() {
+const PizzaView: React.FC = () => {
   window.scrollTo(0, 0);
 
-  const [pizza, setPizza] = React.useState({});
+  const [pizza, setPizza] = React.useState<{
+      id: string
+      title: string,
+      imageUrl: string,
+      price: number}>
+    ({
+      id: '',
+      title: '',
+      imageUrl: '',
+      price: 0
+    });
 
   const { id } = useParams();
   const navigate = useNavigate();

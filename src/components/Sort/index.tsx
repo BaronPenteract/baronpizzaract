@@ -1,25 +1,27 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setSortType, setOrderType } from '../../redux/slices/filterSlice';
+import { setSortType, setOrderType, getFilterSelector } from '../../redux/slices/filterSlice';
 import './Sort.scss';
 
-export const listValues = [
+type ListValue = { name: string; sortCategory: string };
+
+export const listValues: ListValue[] = [
   { name: 'популярности', sortCategory: 'rating' },
   { name: 'цене', sortCategory: 'price' },
   { name: 'алфавиту', sortCategory: 'title' },
 ];
 
-export default function Sort(/* { sortOrder, handleSortOrder } */) {
+const Sort = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const sortRef = React.useRef();
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const { sortType, order } = useSelector((state) => state.filter);
+  const { sortType, order } = useSelector(getFilterSelector);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    const handleClickOutsideSort = (e) => {
+    const handleClickOutsideSort = (e: any) => {
       if (!e.path.includes(sortRef.current)) {
         setIsOpen(false);
       }
@@ -40,7 +42,7 @@ export default function Sort(/* { sortOrder, handleSortOrder } */) {
     </li>
   ));
 
-  const handleListElementClick = (item) => {
+  const handleListElementClick = (item: any) => {
     dispatch(setSortType(item));
     setIsOpen(false);
   };
@@ -71,4 +73,6 @@ export default function Sort(/* { sortOrder, handleSortOrder } */) {
       </div>
     </div>
   );
-}
+};
+
+export default Sort;

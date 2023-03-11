@@ -6,11 +6,11 @@ import { setSearchValue } from '../../redux/slices/filterSlice';
 
 import styles from './Search.module.scss';
 
-export default function Search() {
+const Search: React.FC = () => {
   const dispatch = useDispatch();
 
   const [value, setValue] = React.useState('');
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const onUpdateInput = React.useCallback(
     debounce((str) => {
@@ -19,13 +19,13 @@ export default function Search() {
     [],
   );
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: any) => {
     setValue(e.target.value);
     onUpdateInput(e.target.value);
   };
 
   const onClearValue = () => {
-    inputRef.current.focus();
+    inputRef.current?.focus();
     setValue('');
     dispatch(setSearchValue(''));
   };
@@ -65,4 +65,6 @@ export default function Search() {
       )}
     </div>
   );
-}
+};
+
+export default Search;
