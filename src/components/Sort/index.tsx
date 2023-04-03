@@ -25,18 +25,22 @@ const Sort = () => {
 
   React.useEffect(() => {
     const handleClickOutsideSort = (e: MouseEvent) => {
-      const _e = e as MouseEvent & {
+      /* const _e = e as MouseEvent & {
         path: Node[];
-      };
+      }; */
 
-      if (sortRef.current && !_e.path.includes(sortRef.current)) {
+      const path = e.composedPath();
+
+      if (sortRef.current && !path.includes(sortRef.current)) {
         setIsOpen(false);
       }
     };
 
     document.body.addEventListener('click', handleClickOutsideSort);
 
-    return () => document.body.removeEventListener('click', handleClickOutsideSort);
+    return () => {
+      document.body.removeEventListener('click', handleClickOutsideSort);
+    };
   }, []);
 
   const listElements = SortValues.map((obj, index) => (

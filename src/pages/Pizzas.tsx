@@ -3,7 +3,12 @@ import { useSelector } from 'react-redux';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 
-import { getFilterSelector, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import {
+  getFilterSelector,
+  setCurrentPage,
+  setFilters,
+  setCategoryId,
+} from '../redux/slices/filterSlice';
 import {
   FetchPizza,
   fetchPizzas,
@@ -93,26 +98,32 @@ const Pizzas: React.FC = () => {
   const selectPage = (page: number) => {
     dispatch(setCurrentPage(page));
   };
-  console.log(pizzas);
-  const pizzasElements = pizzas.map((pizzaData: PizzaType) => (
-    <PizzaBlock key={pizzaData.id} {...pizzaData} />
-  ));
+
+  const pizzasElements = pizzas
+    ? pizzas.map((pizzaData: PizzaType) => <PizzaBlock key={pizzaData.id} {...pizzaData} />)
+    : null;
   const sceletonPizzasElements = [...new Array(6)].map((_, index) => (
     <SceletonPizzaBlock key={index} />
   ));
 
+  /* ------------------------------------------HANDLERS */
+  const handleCategotyClick = React.useCallback(
+    (index: number) => dispatch(setCategoryId(index)),
+    [],
+  );
+
   return (
     <>
-      <div className="content__top">
-        <Categories />
+      <div className="content__top background">
+        <Categories categoryId={categoryId} handleCategotyClick={handleCategotyClick} />
         <Sort />
       </div>
-      <div className="content__title">
+      <div className="content__title background">
         <h2>Пиццы</h2>
         <Search />
       </div>
       <div className="content__items">
-        {status === Status.ERROR ? (
+        {status === Status.ERROR || !pizzasElements ? (
           <div className="content__items_error">
             <h2>К сожалению, не удалось загрузить пиццы(</h2>
           </div>

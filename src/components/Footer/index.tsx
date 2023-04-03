@@ -5,7 +5,7 @@ import logo from '../../images/logo.png';
 
 const Footer: React.FC = () => {
   return (
-    <div className="footer">
+    <div className="footer background">
       <div className="container">
         <Link to="/">
           <div className="footer__logo">

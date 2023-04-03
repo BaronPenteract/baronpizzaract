@@ -29,5 +29,22 @@
         color: #fff;
       }
     }
+      
+    @media screen and (max-width: 820px) {
+      gap: 5px;
+
+      li {
+        padding: 7px 15px;
+      }
+    }
+      
+    @media screen and (max-width: 442px) {
+      gap: 5px;
+  
+      li {
+        padding: 4px 10px;
+        font-size: 14px;
+      }
+    }
   }
 }

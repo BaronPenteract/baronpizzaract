@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import './Header.scss';
 import logo from '../../images/logo.png';
+import imageBG from '../../images/mr_meeseeks_box.jpg';
 import { getCartSelector } from '../../redux/slices/cartSlice';
 
 const Header: React.FC = () => {
@@ -13,6 +14,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="header">
+      <img className="header__image-bg" src={imageBG} alt="background" />
       <div className="container">
         <Link to="/">
           <div className="header__logo">

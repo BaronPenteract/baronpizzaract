@@ -67,4 +67,8 @@
     opacity: 1;
     visibility: visible;
   }
+
+  @media screen and (max-width: 442px) {
+    font-size: 14px;
+  }
 }

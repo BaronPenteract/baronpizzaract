@@ -70,7 +70,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
   ));
 
   return (
-    <div className="pizza-block">
+    <div className="pizza-block background">
       <span className="pizza-block__rating">{rating}</span>
       <Link to={`pizza/${id}`}>
         <img className="pizza-block__image" src={imageUrl} alt={`Pizza ${title}`} />

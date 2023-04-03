@@ -82,8 +82,6 @@
 
   &__bottom {
     padding: 20px;
-    background-color: $sectionBGColor;
-    border-radius: $borderRadius;
 
     &-details {
       display: flex;
@@ -151,8 +149,6 @@
     width: 100%;
     max-width: 560px;
     text-align: center;
-    background-color: $sectionBGColor;
-    border-radius: $borderRadius;
     padding: 5px;
 
     h2 {

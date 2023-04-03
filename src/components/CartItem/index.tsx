@@ -34,7 +34,7 @@ const CartItem: React.FC<CartItemType> = (props) => {
   };
 
   return (
-    <div className="cart__item">
+    <div className="cart__item background">
       <div className="cart__item_section">
         <div className="cart__item-img">
           <img className="pizza-block__image" src={imageUrl} alt={`Пицца ${title}`} />
@@ -50,8 +50,9 @@ const CartItem: React.FC<CartItemType> = (props) => {
         <div className="cart__item-count">
           <button
             type="button"
+            disabled={count === 1}
             title="Убрать одну единицу"
-            onClick={count > 1 ? handleMinusItem : undefined}
+            onClick={handleMinusItem}
             className={`button button--outline button--circle cart__item-count-minus ${
               count < 2 && 'button_disabled'
             }`}

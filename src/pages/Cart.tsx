@@ -101,7 +101,7 @@ const Cart: React.FC = () => {
         </button>
       </div>
       <div className="content__items">{itemsElements}</div>
-      <div className="cart__bottom">
+      <div className="cart__bottom background">
         <div className="cart__bottom-details">
           <span>
             Всего пицц: <b>{totalCount} шт.</b>{' '}

@@ -12,7 +12,7 @@ const Pagination: React.FC<PaginationProps> = ({ forcePage, pageCount, onChangeP
   return (
     <>
       <ReactPaginate
-        className={styles.root}
+        className={styles.root + ' background'}
         breakLabel="..."
         nextLabel=">"
         onPageChange={(e) => onChangePage(e.selected + 1)}

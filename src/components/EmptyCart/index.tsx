@@ -4,7 +4,7 @@ import emptyCartImage from '../../images/pizza-morty-sad.png';
 
 const EmptyCart: React.FC = () => {
   return (
-    <div className="container container--cart">
+    <div className="container container--cart background">
       <div className="cart cart--empty">
         <img src={emptyCartImage} alt="Empty cart" />
         <h2>
