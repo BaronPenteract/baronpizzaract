@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/baronpizzaract/static/css/main.63ad2d6c.css",
-    "main.js": "/baronpizzaract/static/js/main.a7b96b5f.js",
+    "main.css": "/baronpizzaract/static/css/main.c6bef59c.css",
+    "main.js": "/baronpizzaract/static/js/main.fb63cdb0.js",
     "static/media/pizza-morty-fun.png": "/baronpizzaract/static/media/pizza-morty-fun.f20ee787e3acab2094d8.png",
     "static/media/logo.png": "/baronpizzaract/static/media/logo.6c674e5b99eb30adb140.png",
     "static/media/mr_meeseeks_box.jpg": "/baronpizzaract/static/media/mr_meeseeks_box.f2f861bb69ff3499b7b8.jpg",
@@ -9,11 +9,11 @@
     "static/media/pizza-morty-sad.png": "/baronpizzaract/static/media/pizza-morty-sad.15ddf44a7e5db32a30df.png",
     "static/media/rating-star.png": "/baronpizzaract/static/media/rating-star.9891cb79bf8d8709865f.png",
     "index.html": "/baronpizzaract/index.html",
-    "main.63ad2d6c.css.map": "/baronpizzaract/static/css/main.63ad2d6c.css.map",
-    "main.a7b96b5f.js.map": "/baronpizzaract/static/js/main.a7b96b5f.js.map"
+    "main.c6bef59c.css.map": "/baronpizzaract/static/css/main.c6bef59c.css.map",
+    "main.fb63cdb0.js.map": "/baronpizzaract/static/js/main.fb63cdb0.js.map"
   },
   "entrypoints": [
-    "static/css/main.63ad2d6c.css",
-    "static/js/main.a7b96b5f.js"
+    "static/css/main.c6bef59c.css",
+    "static/js/main.fb63cdb0.js"
   ]
 }
