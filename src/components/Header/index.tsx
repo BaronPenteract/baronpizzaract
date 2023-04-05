@@ -5,12 +5,23 @@ import './Header.scss';
 import logo from '../../images/logo.png';
 import imageBG from '../../images/mr_meeseeks_box.jpg';
 import { getCartSelector } from '../../redux/slices/cartSlice';
+import React from 'react';
 
 const Header: React.FC = () => {
+  const isMounted = React.useRef(false);
+
   const { pathname } = useLocation();
 
   const { totalPrice, items } = useSelector(getCartSelector);
   const totalCount = items.reduce((acc: number, item: any) => (acc += item.count), 0);
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      localStorage.setItem('cart', JSON.stringify(items));
+    }
+
+    isMounted.current = true;
+  }, [items]);
 
   return (
     <div className="header">

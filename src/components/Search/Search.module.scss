@@ -4,14 +4,16 @@
   margin-left: auto;
   max-width: 200px;
   text-align: right;
-  position: relative;
-  z-index: 0;
+  position: sticky;
+  top: 10px;
+  right: 50px;
+  z-index: 1;
 }
 
 .del {
   position: absolute;
   top: 0;
-  right: -6px;
+  right: 4px;
   z-index: 1;
   width: 30px;
   height: 100%;
@@ -43,4 +45,8 @@
     width: 200px;
     transition-delay: 0s;
   }
+}
+
+.inputActive {
+  width: 200px;
 }

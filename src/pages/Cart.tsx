@@ -27,7 +27,7 @@ const Cart: React.FC = () => {
 
   return (
     <div className="cart">
-      <div className="cart__top">
+      <div className="cart__top  background">
         <h2 className="content__title">
           <svg
             width="18"

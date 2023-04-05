@@ -22,7 +22,7 @@
 
       &:nth-child(2) {
         justify-content: right;
-        
+        flex-wrap: wrap;
       }
     }
 
@@ -67,6 +67,11 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+
+      @media screen and (max-width: 442px) {
+        width: 100%;
+        justify-content: space-evenly;
+      }
 
       &-minus {
         svg {

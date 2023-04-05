@@ -9,12 +9,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
   }
 
   .content__title {
     display: flex;
     align-items: center;
     font-size: 32px;
+
+    @media screen and (max-width: 442px) {
+      font-size: 24px;
+    }
 
     svg {
       position: relative;
@@ -86,9 +91,19 @@
     &-details {
       display: flex;
       justify-content: space-between;
+      gap: 10px;
+
+      @media screen and (max-width: 442px) {
+        flex-direction: column;
+        align-items: center;
+      }
 
       span {
         font-size: 22px;
+
+        @media screen and (max-width: 820px) {
+          font-size: 18px;
+        }
 
         &:last-of-type {
           b {
@@ -102,19 +117,31 @@
       display: flex;
       justify-content: space-between;
       margin-top: 40px;
+      gap: 10px;
+
+      @media screen and (max-width: 442px) {
+        flex-direction: column;
+        align-items: center;
+      }
 
       .go-back-btn {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 210px;
+        width: 100%;
+        max-width: 210px;
 
         border-color: darken($color: $gray-line, $amount: 10);
+
+
 
         span {
           color: darken($color: $gray-line, $amount: 20);
           font-weight: 500;
           font-weight: 600;
+          @media screen and (max-width: 820px) {
+            font-size: 14px;
+          }
         }
 
         &:hover {
@@ -138,8 +165,14 @@
       .pay-btn {
         font-size: 16px;
         font-weight: 600;
-        width: 210px;
+        width: 100%;
+        max-width: 210px;
         padding: 16px;
+        
+        @media screen and (max-width: 820px) {
+          font-size: 14px;
+          padding: 10px;
+        }
       }
     }
   }

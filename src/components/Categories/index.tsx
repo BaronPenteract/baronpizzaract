@@ -2,7 +2,14 @@ import React from 'react';
 
 import './Categories.scss';
 
-const categories: string[] = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
+export const categories: string[] = [
+  'Все',
+  'Мясные',
+  'Вегетарианские',
+  'Гриль',
+  'Острые',
+  'Закрытые',
+];
 
 type CategoriesPropsType = {
   categoryId: number;

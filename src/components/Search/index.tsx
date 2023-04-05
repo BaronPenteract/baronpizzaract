@@ -31,7 +31,7 @@ const Search: React.FC = () => {
   };
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root + ' background'}>
       <svg className={styles.icon} viewBox="0 0 48 48">
         <path
           fill="#616161"
@@ -52,7 +52,7 @@ const Search: React.FC = () => {
       </svg>
       <input
         ref={inputRef}
-        className={styles.input}
+        className={styles.input + ` ${value ? styles.inputActive : ''}`}
         type="text"
         placeholder="Поиск пицц"
         value={value}

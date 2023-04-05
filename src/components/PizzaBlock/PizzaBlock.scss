@@ -30,9 +30,21 @@
     font-weight: 800;
   }
 
+  a {
+    overflow: hidden;
+    border-radius: 50%;
+    transition: filter .2s linear;
+    
+    &:hover {
+      filter: drop-shadow(0 0 5px #0005);
+    }
+  }
+
   &__image {
-    width: 260px;
-    margin: 0 auto;
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: center;
   }
 
   &__title {

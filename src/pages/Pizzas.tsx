@@ -18,7 +18,7 @@ import {
   Status,
 } from '../redux/slices/pizzasSlice';
 
-import Categories from '../components/Categories';
+import Categories, { categories } from '../components/Categories';
 import Sort, { SortValues } from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import SceletonPizzaBlock from '../components/PizzaBlock/Sceleton';
@@ -51,7 +51,6 @@ const Pizzas: React.FC = () => {
 
   // Проверяем, есть ли параметры в ссылке, если да, то вытаскиваем
   React.useEffect(() => {
-    console.log(window.location.search);
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1)) as unknown as SearchParamsType;
       const sortType = SortValues.find((obj) => obj.sortCategory === params.sort) || SortValues[0];
@@ -119,9 +118,9 @@ const Pizzas: React.FC = () => {
         <Sort />
       </div>
       <div className="content__title background">
-        <h2>Пиццы</h2>
-        <Search />
+        <h2>{categories[categoryId]} пиццы</h2>
       </div>
+      <Search />
       <div className="content__items">
         {status === Status.ERROR || !pizzasElements ? (
           <div className="content__items_error">

@@ -30,8 +30,11 @@ body {
 
     width: 100%;
     height: 100%;
-    border-radius: $borderRadius;
-    background-color: $sectionBGColor;
+    border-radius: $borderRadius;/* 
+    background-color: $sectionBGColor; */
+    background-image: linear-gradient(42deg, $sectionBGColor 0%, #61e6df  51%,  lighten($orange, 30%)  100%);
+    filter: opacity(.95);
+    box-shadow: 0 5px 5px #0005;
   }
 }
 
@@ -44,10 +47,10 @@ body {
   gap: 20px;
 
   &__title {
-    padding: 35px;
+    padding: 35px;/* 
     position: sticky;
     top: 10px;
-    z-index: 1;
+    z-index: 1; */
 
     display: flex;
     flex-wrap: wrap;
@@ -57,6 +60,7 @@ body {
   }
 
   &__items {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(auto-fit, 280px);
     row-gap: 20px;
